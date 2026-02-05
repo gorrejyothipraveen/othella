@@ -9,3 +9,4 @@ implement an dummy model
 4. after entering position validate it 
 5. after validation
 6. turning the symbols based on who is player...
+

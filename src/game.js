@@ -14,3 +14,21 @@ export const placeSymbolsIntoGrid = (grid, sym1, sym2) => {
   grid[index1][index1] = sym1;
   return grid;
 };
+
+export const isPositionWithinBoundary = (x, y, rows, cols) => {
+  return (x >= 0 && x < rows && y >= 0 && y < cols);
+};
+
+
+/*
+  isPosition within boundary
+  doesContainFlippingChance - 
+
+*/
+
+[
+  [" ", " ", " ", " "],
+  [" ", "1", "0", " "],
+  [" ", "0", "1", " "],
+  [" ", " ", " ", " "],
+];

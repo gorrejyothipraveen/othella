@@ -1,0 +1,31 @@
+{
+  "scriptId": "335",
+  "url": "file:///Users/jyothipraveengorre/workspace/projects/othella/src/game.js",
+  "functions": [
+    {
+      "functionName": "",
+      "ranges": [{ "startOffset": 0, "endOffset": 436, "count": 1 }],
+      "isBlockCoverage": true
+    },
+    {
+      "functionName": "createGrid",
+      "ranges": [{ "startOffset": 26, "endOffset": 144, "count": 2 }],
+      "isBlockCoverage": true
+    },
+    {
+      "functionName": "",
+      "ranges": [{ "startOffset": 91, "endOffset": 136, "count": 6 }],
+      "isBlockCoverage": true
+    },
+    {
+      "functionName": "",
+      "ranges": [{ "startOffset": 126, "endOffset": 135, "count": 20 }],
+      "isBlockCoverage": true
+    },
+    {
+      "functionName": "placeSymbolsIntoGrid",
+      "ranges": [{ "startOffset": 183, "endOffset": 434, "count": 1 }],
+      "isBlockCoverage": true
+    }
+  ]
+}
