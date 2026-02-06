@@ -19,10 +19,38 @@ export const isPositionWithinBoundary = (x, y, rows, cols) => {
   return (x >= 0 && x < rows && y >= 0 && y < cols);
 };
 
+export const isSpaceOrSameSymbol = (x, y, grid, sym) => {
+  return grid[x][y] === " " || grid[x][y] === sym;
+};
 
+export const isNextPositionSameSym = (x, y, grid, sym) => {
+  return isPositionWithinBoundary(x, y, grid.length, grid[0].length) &&
+    grid[x][y] === sym;
+};
+
+export const doesContainFlippingChance = (posConfig) => {
+  // x, y, x1, y1, sym, rows, cols;
+  let status = false;
+  const { x, y, x1, y1, sym, grid } = posConfig;
+  const [cols, rows] = [grid.length, grid[0].length];
+  let xPos = x;
+  let yPos = y;
+  while (true) {
+    xPos += x1;
+    yPos += y1;
+    if (!isPositionWithinBoundary(xPos, yPos, rows, cols)) break;
+    if (isSpaceOrSameSymbol(xPos, yPos, grid, sym)) break;
+    if (isNextPositionSameSym(xPos + x1, yPos + y1, grid, sym)) {
+      status = true;
+      break;
+    }
+  }
+
+  return status;
+};
 /*
   isPosition within boundary
-  doesContainFlippingChance - 
+  doesContainFlippingChance -
 
 */
 
