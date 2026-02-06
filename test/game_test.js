@@ -5,6 +5,7 @@ import {
   doesContainFlippingChance,
   isNextPositionSameSym,
   isPositionWithinBoundary,
+  isValidPosition,
   placeSymbolsIntoGrid,
 } from "../src/game.js";
 
@@ -90,6 +91,19 @@ describe("othello game", () => {
       const expected = false;
       assertEquals(actual, expected);
     });
+
+    it("it has flipping chance at 3 : 3", () => {
+      const grid = [
+        [" ", "0", "1", " "],
+        [" ", " ", " ", " "],
+        [" ", " ", "0", "0"],
+        [" ", " ", " ", "1"],
+      ];
+      const posConfig = { x: 1, y: 3, x1: 1, y1: 0, grid, sym: "1" };
+      const actual = doesContainFlippingChance(posConfig);
+      const expected = true;
+      assertEquals(actual, expected);
+    });
   });
 
   describe("does position contain space or same symbol : ", () => {
@@ -103,6 +117,30 @@ describe("othello game", () => {
       const actual = isNextPositionSameSym(1, 1, grid, "1");
       const expected = true;
       assertEquals(actual, expected);
+    });
+  });
+
+  describe("test isValidPosition functionality : ", () => {
+    it("0:0 is valid position : ", () => {
+      const grid = [
+        [" ", "0", "1", " "],
+        [" ", "1", " ", " "],
+        [" ", " ", " ", " "],
+        [" ", " ", " ", " "],
+      ];
+      const actual = isValidPosition(0, 0, grid, "1");
+      assertEquals(actual, true);
+    });
+
+    it("provide invalid position : ", () => {
+      const grid = [
+        [" ", "0", "1", " "],
+        [" ", "1", " ", " "],
+        [" ", " ", " ", " "],
+        [" ", " ", " ", " "],
+      ];
+      const actual = isValidPosition(1, 0, grid, "1");
+      assertEquals(actual, false);
     });
   });
 });

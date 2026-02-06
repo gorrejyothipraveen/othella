@@ -19,8 +19,6 @@
 //   return false;
 // };
 
-
-
 // export const isValidPosition = (x, y, symbol, grid) => {
 //   const rows = grid.length;
 //   const cols = grid[0].length;
@@ -38,11 +36,14 @@
 //   [" ", " ", " ", " "],
 // ];
 
-
-// const directions = [
-//   [0, 1],
-//   [1, 0],
-//   [0, -1],
-//   [-1, 0],
-// ];
-
+const directions = [
+  [0, 1],
+  [1, 0],
+  [0, -1],
+  [-1, 0],
+  [1, 1],
+  [1, -1],
+  [-1, 1],
+  [-1, -1],
+  [-1, 1],
+];

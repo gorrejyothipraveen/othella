@@ -45,18 +45,40 @@ export const doesContainFlippingChance = (posConfig) => {
       break;
     }
   }
-
   return status;
 };
+
+const directions = [
+  [0, 1],
+  [1, 0],
+  [0, -1],
+  [-1, 0],
+  [1, 1],
+  [1, -1],
+  [-1, 1],
+  [-1, -1],
+  [-1, 1],
+];
+
+export const isValidPosition = (x, y, grid, sym) => {
+  for (const direction of directions) {
+    const [x1, y1] = direction;
+    const posConfig = { x, y, x1, y1, grid, sym};
+    if (doesContainFlippingChance(posConfig)) {
+      return true;
+    }
+  }
+  return false;
+};
+
 /*
   isPosition within boundary
   doesContainFlippingChance -
-
 */
 
-[
-  [" ", " ", " ", " "],
-  [" ", "1", "0", " "],
-  [" ", "0", "1", " "],
-  [" ", " ", " ", " "],
-];
+// const grid  = [
+//   [" ", " ", " ", " "],
+//   [" ", "1", "0", " "],
+//   [" ", "0", "1", " "],
+//   [" ", " ", " ", " "],
+// ];
