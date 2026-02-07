@@ -3,9 +3,11 @@ import { describe, it } from "jsr:@std/testing/bdd";
 import {
   createGrid,
   doesContainFlippingChance,
+  flipSymbols,
   isNextPositionSameSym,
   isPositionWithinBoundary,
   isValidPosition,
+  modifySymbols,
   placeSymbolsIntoGrid,
 } from "../src/game.js";
 
@@ -141,6 +143,46 @@ describe("othello game", () => {
       ];
       const actual = isValidPosition(1, 0, grid, "1");
       assertEquals(actual, false);
+    });
+  });
+
+  describe("flipping the symbols : ", () => {
+    it("flipping the symbols from 0 : 1 to 0:3", () => {
+      const grid = [
+        [" ", "0", "0", "1"],
+        ["0", "1", " ", " "],
+        [" ", " ", " ", " "],
+        [" ", " ", " ", " "],
+      ];
+      const posConfig = { x: 0, y: 0, x1: 0, y1: 1, sym: "1", grid };
+      flipSymbols(posConfig);
+      const expected = [
+        [" ", "1", "1", "1"],
+        ["0", "1", " ", " "],
+        [" ", " ", " ", " "],
+        [" ", " ", " ", " "],
+      ];
+      assertEquals(posConfig.grid, expected);
+    });
+  });
+
+  describe("modify symbols : in possible position", () => {
+    it("placing the 1 symbol in the position 0 : 0", () => {
+      const grid = [
+        [" ", "1", "0", "1"],
+        ["0", "1", "0", "1"],
+        ["0", "0", "0", "1"],
+        ["1", " ", "1", "1"],
+      ];
+      const expected = [
+        ["1", "1", "0", "1"],
+        ["1", "1", "0", "1"],
+        ["1", "0", "0", "1"],
+        ["1", " ", "1", "1"],
+      ];
+
+      modifySymbols(0, 0, grid, "1");
+      assertEquals(grid, expected)
     });
   });
 });

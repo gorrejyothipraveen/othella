@@ -10,3 +10,8 @@ implement an dummy model
 5. after validation
 6. turning the symbols based on who is player...
 
+* validation part is completed
+
+* after the validation flip the symbols
+ - same check does contain flipping chance
+ - if yes then flip all the coins

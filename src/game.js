@@ -63,7 +63,7 @@ const directions = [
 export const isValidPosition = (x, y, grid, sym) => {
   for (const direction of directions) {
     const [x1, y1] = direction;
-    const posConfig = { x, y, x1, y1, grid, sym};
+    const posConfig = { x, y, x1, y1, grid, sym };
     if (doesContainFlippingChance(posConfig)) {
       return true;
     }
@@ -71,14 +71,44 @@ export const isValidPosition = (x, y, grid, sym) => {
   return false;
 };
 
+export const flipSymbols = (posConfig) => {
+  const [x1, y1] = [posConfig.x1, posConfig.y1];
+  let [x, y] = [posConfig.x, posConfig.y];
+
+  while (posConfig.grid[x + x1][y + y1] !== posConfig.sym) {
+    posConfig.grid[x + x1][y + y1] = posConfig.sym;
+    x += x1;
+    y += y1;
+  }
+};
+
+export const modifySymbols = (x, y, grid, sym) => {
+  for (const direction of directions) {
+    const [x1, y1] = direction;
+    const posConfig = { x, y, x1, y1, grid, sym };
+    if (doesContainFlippingChance(posConfig)) {
+      grid[x][y] = sym;
+      flipSymbols(posConfig);
+    }
+  }
+};
+
+export const performOperation = (x, y, grid, sym) => {
+  if (!isValidPosition(x, y, grid, sym)) {
+    return { success: false, errorMsg: "Invalid Move : " };
+  }
+
+  modifySymbols(x, y, grid, sym);
+};
+
 /*
   isPosition within boundary
   doesContainFlippingChance -
 */
 
-// const grid  = [
-//   [" ", " ", " ", " "],
-//   [" ", "1", "0", " "],
-//   [" ", "0", "1", " "],
-//   [" ", " ", " ", " "],
+// const grid = [
+//   [" ", "1", "0", "1"],
+//   ["0", "1", "0", "1"],
+//   ["0", "0", "0", "1"],
+//   ["1", " ", "1", "1"],
 // ];
