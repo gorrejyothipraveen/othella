@@ -14,4 +14,4 @@ implement an dummy model
 
 * after the validation flip the symbols
  - same check does contain flipping chance
- - if yes then flip all the coins
+ - if yes then flip all the symbols 

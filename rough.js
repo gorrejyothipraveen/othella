@@ -47,3 +47,20 @@ const directions = [
   [-1, -1],
   [-1, 1],
 ];
+
+
+// let i = 0; 
+// const playersSymbols = ["1", "0"];
+// const move = (grid) => {
+//   const sym = playersSymbols[i++ / playersSymbols.length];
+//   if(doesPlayerHasChance(sym, grid)) {
+//     const [x , y] = parse(takeInput());
+//     const result = validateAndPerformOperation()
+//   }
+// };
+
+// const play = () => {
+//   const grid = createGrid(4, 4);
+//   placeSymbolsIntoGrid(grid, "1", "0");
+//   move(grid);
+// };

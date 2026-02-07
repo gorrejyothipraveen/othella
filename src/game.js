@@ -20,7 +20,8 @@ export const isPositionWithinBoundary = (x, y, rows, cols) => {
 };
 
 export const isSpaceOrSameSymbol = (x, y, grid, sym) => {
-  return grid[x][y] === " " || grid[x][y] === sym;
+  const space = " ";
+  return grid[x][y] === space || grid[x][y] === sym;
 };
 
 export const isNextPositionSameSym = (x, y, grid, sym) => {
@@ -93,17 +94,84 @@ export const modifySymbols = (x, y, grid, sym) => {
   }
 };
 
-export const performOperation = (x, y, grid, sym) => {
+export const doesOccupied = (x, y, grid) => {
+  const space = " ";
+  return grid[x][y] !== space;
+};
+
+export const validateAndPerformOperation = (x, y, grid, sym) => {
   if (!isValidPosition(x, y, grid, sym)) {
-    return { success: false, errorMsg: "Invalid Move : " };
+    return { success: false, errorMsg: "Invalid Move!" };
   }
 
+  if (doesOccupied(x, y, grid)) {
+    return { success: false, errorMsg: "Already Occupied" };
+  }
   modifySymbols(x, y, grid, sym);
+  return { success: true, message: "Modified Successfully" };
+};
+
+export const doesPlayerHasChance = (sym, grid) => {
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      if (isValidPosition(i, j, grid, sym)) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+};
+
+export const display = (grid) => {
+  console.log(grid.map((row) => row.join(" ")).join("\n"));
+};
+
+export const takeInputFromUser = () => {
+  return prompt("enter coordinates : ");
+};
+
+export const parse = (coordinates) => {
+  const [x, y] = coordinates.split(" ").map((x) => parseInt(x));
+
+  return { x, y };
+};
+
+export const isGameOver = (grid) => {
+  return !grid.some((row) => row.some((ele) => ele === " "));
+};
+
+export const highestOccurredSymbol = (grid, symbolsCount) => {
+  const symbols = Object.keys(symbolsCount);
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[0].length; j++) {
+      if (symbols[0] === grid[i][j]) {
+        symbolsCount[symbols[0]] += 1;
+      } else {
+        symbolsCount[symbols[1]] += 1;
+      }
+    }
+  }
+  if (symbolsCount[symbols[0]] === symbolsCount[symbols[1]]) return "equal";
+  
+  return symbolsCount[symbols[0]] > symbolsCount[symbols[1]]
+    ? symbols[0]
+    : symbols[1];
 };
 
 /*
   isPosition within boundary
   doesContainFlippingChance -
+
+  take the input from the user
+  validate and perform operation :
+
+  two players are there :
+  first player with 1 sym
+  and second player with 0 sym
+
+  playerSymbols = [ '1', '0' ]
+
 */
 
 // const grid = [
