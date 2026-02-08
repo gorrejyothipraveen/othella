@@ -246,6 +246,19 @@ describe("othello game", () => {
       const expected = false;
       assertEquals(actual, expected);
     });
+
+    it('player does have chance to play : ', () => {
+      const grid = [
+        ["1", "1", "1", "0"],
+        ["1", "1", "0", "0"],
+        [" ", "0", "0", "0"],
+        ["0", "1", "1", "1"],
+      ];
+      const sym = '1';
+      const actual = doesPlayerHasChance(sym, grid);
+      const expected = false;
+      assertEquals(actual, expected)
+    })
   });
 
   describe("testing the parser : ", () => {
@@ -371,7 +384,7 @@ describe("othello game", () => {
         ["1", "1", "1", "1"],
       ];
       const actual = highestOccurredSymbol(grid, { 1: 0, 0: 0 });
-      const expected = "equal";
+      const expected = "both";
       assertEquals(actual, expected);
     })
   });
